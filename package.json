@@ -1,6 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "lint": "eslint . --ext .js,.ts,.tsx", 
+    "build:android": "expo build:android",
     "start": "expo start",
     "android": "expo start --android",
     "android-emulator": "emulator -avd Pixel_3_XL_API_29",
@@ -19,6 +21,12 @@
     "@types/react": "^16.8.19",
     "@types/react-native": "^0.57.60",
     "babel-preset-expo": "^5.1.1",
+    "eslint": "^6.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "typescript": "^3.4.5"
   },
   "private": true
