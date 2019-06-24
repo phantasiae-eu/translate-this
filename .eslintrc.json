@@ -1,21 +1,29 @@
 {
+    "parser": "@typescript-eslint/parser",
     "env": {
         "browser": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "react-native/react-native": true
     },
     "extends": [
-        "standard"
+        "plugin:@typescript-eslint/recommended", "plugin:react/recommended"
     ],
+    "plugins":["react", "react-native"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
-    "rules": {
-        "no-console": 2
-    }
+    "settings":  {
+        "react":  {
+          "version":  "detect"
+        }
+      }
 }
