@@ -7,9 +7,9 @@
         "react-native/react-native": true
     },
     "extends": [
-        "plugin:@typescript-eslint/recommended", "plugin:react/recommended"
+        "plugin:@typescript-eslint/recommended", "plugin:react/recommended", "prettier", "plugin:prettier/recommended"
     ],
-    "plugins":["react", "react-native"],
+    "plugins":["react", "react-native", "prettier"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -25,5 +25,8 @@
         "react":  {
           "version":  "detect"
         }
+      },
+      "rules": {
+        "prettier/prettier": "error"
       }
 }
