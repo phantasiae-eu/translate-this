@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const App: React.FunctionComponent<{}> = (): ReactElement => (
     <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
+        <Text>Work in progress!</Text>
     </View>
 )
 
