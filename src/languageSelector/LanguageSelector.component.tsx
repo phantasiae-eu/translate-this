@@ -5,6 +5,7 @@ export default class LanguageSelector extends React.Component<
     {},
     { language: string }
 > {
+    private languages: string[] = ['Italian', 'English', 'Chinese']
     private constructor(props: Readonly<{}>) {
         super(props)
         this.state = { language: 'java' }
@@ -19,8 +20,15 @@ export default class LanguageSelector extends React.Component<
                         this.setState({ language: itemValue })
                     }
                 >
-                    <Picker.Item label="Java" value="java" />
-                    <Picker.Item label="JavaScript" value="js" />
+                    {this.languages.map(
+                        (language: string, i: number): ReactElement => (
+                            <Picker.Item
+                                key={i}
+                                label={language}
+                                value={language}
+                            />
+                        )
+                    )}
                 </Picker>
             </View>
         )
