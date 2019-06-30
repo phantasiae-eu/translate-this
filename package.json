@@ -6,7 +6,7 @@
     "start": "expo start",
     "android": "expo start --android",
     "android-emulator": "emulator -avd Pixel_3_XL_API_29",
-    "ios": "expo start --ios",
+    "ios": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
   },
