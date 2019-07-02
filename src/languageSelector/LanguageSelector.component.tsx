@@ -8,7 +8,7 @@ export default class LanguageSelector extends React.Component<
     private languages: string[] = ['Italian', 'English', 'Chinese']
     private constructor(props: Readonly<{}>) {
         super(props)
-        this.state = { language: 'java' }
+        this.state = { language: 'Italian' }
     }
     public render(): ReactElement {
         return (
