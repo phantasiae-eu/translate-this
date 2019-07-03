@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Header from './src/header/Header.component'
-import LanguageSelector from './src/languageSelector/LanguageSelector.component'
+import LanguageSelector from './src/languageSelector/LanguageSelector.container'
 import { Provider } from 'react-redux'
 import store from './src/store/store'
 
