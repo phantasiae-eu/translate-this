@@ -4,15 +4,15 @@ import {
     defaultLanguageSelector,
 } from './languageSelector.model'
 import {
-    ALanguageSelectorChange,
-    LANGUAGE_SELECTOR_CHANGE,
+    ALanguageSelectorChangeAccepted,
+    LANGUAGE_SELECTOR_CHANGE_ACCEPTED,
 } from './languageSelector.actions'
 export const languageSelector: Reducer<
     LanguageSelector,
-    ALanguageSelectorChange
+    ALanguageSelectorChangeAccepted
 > = (state = defaultLanguageSelector, action): LanguageSelector => {
     switch (action.type) {
-        case LANGUAGE_SELECTOR_CHANGE:
+        case LANGUAGE_SELECTOR_CHANGE_ACCEPTED:
             return {
                 language: action.language,
             }
