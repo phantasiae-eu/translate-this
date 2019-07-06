@@ -7,7 +7,8 @@ import {
     ALanguageSelectorChangeAccepted,
     changeLanguageRejected,
 } from './languageSelector.actions'
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
+import { key } from '../../secretConfig'
 
 export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     store
@@ -25,7 +26,26 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     switch (action.type) {
         case LANGUAGE_SELECTOR_CHANGE: {
             try {
-                await axios('https://jsonplaceholder.typicode.com/posts/1')
+                const options: AxiosRequestConfig = {
+                    method: 'post',
+                    baseURL: 'https://api.cognitive.microsofttranslator.com',
+                    url: 'translate',
+                    params: {
+                        'api-version': '3.0',
+                        from: 'en',
+                        to: 'zh-Hans',
+                    },
+                    headers: {
+                        'Ocp-Apim-Subscription-Key': key,
+                        'Content-type': 'application/json',
+                    },
+                    data: [
+                        {
+                            text: 'Hello World!',
+                        },
+                    ],
+                }
+                await axios(options)
                     .then((res): void => console.log(res))
                     .then(
                         (): ALanguageSelectorChangeAccepted =>
