@@ -1,4 +1,4 @@
-import React, { ReactElement, Dispatch } from 'react'
+import React, { ReactElement } from 'react'
 import { View, Picker } from 'react-native'
 import {
     LanguageSelectorStateProps,
