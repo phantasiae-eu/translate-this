@@ -5,6 +5,7 @@ import {
     LanguageSelectorDispatchProps,
 } from './languageSelector.model'
 import { ALanguageSelectorChange } from './languageSelector.actions'
+import { Language } from '../initialiser/initialiser.model'
 
 export default class LanguageSelector extends React.Component<
     LanguageSelectorStateProps & LanguageSelectorDispatchProps
@@ -18,21 +19,26 @@ export default class LanguageSelector extends React.Component<
         super(props)
     }
     public render(): ReactElement {
+        const selectedLanguage: Language[] = this.props.languages.filter(
+            (obj): string => (obj.selected ? obj.code : null)
+        )
+        const selectedValue: string =
+            selectedLanguage.length === 0 ? undefined : selectedLanguage[0].code
         return (
             <View>
                 <Picker
-                    selectedValue={this.props.language}
+                    selectedValue={selectedValue}
                     style={{ height: 50, width: 100 }}
                     onValueChange={(itemValue): ALanguageSelectorChange =>
                         this.props.changeLanguage(itemValue)
                     }
                 >
-                    {this.languages.map(
-                        (language: string, i: number): ReactElement => (
+                    {this.props.languages.map(
+                        (language: Language, i: number): ReactElement => (
                             <Picker.Item
                                 key={i}
-                                label={language}
-                                value={language}
+                                label={language.name}
+                                value={language.code}
                             />
                         )
                     )}

@@ -8,6 +8,7 @@ import {
     AInitialiseLanguageAccepted,
 } from './initialiser.actions'
 import axios, { AxiosRequestConfig } from 'axios'
+import { Language, Languages } from './initialiser.model'
 
 export const initialiserMiddleware: Middleware<{}, AppState> = (
     store
@@ -29,10 +30,20 @@ export const initialiserMiddleware: Middleware<{}, AppState> = (
                     params: { 'api-version': '3.0' },
                 }
                 axios(options).then(
-                    (res): AInitialiseLanguageAccepted =>
-                        store.dispatch(
-                            initialiseLanguageAccepted(res.data.translation)
+                    (res): AInitialiseLanguageAccepted => {
+                        const translation: Languages = res.data.translation
+                        return store.dispatch(
+                            initialiseLanguageAccepted(
+                                Object.entries(translation).map(
+                                    (obj, i): Language => ({
+                                        code: obj['0'],
+                                        ...obj['1'],
+                                        selected: i === 0 ? true : false,
+                                    })
+                                )
+                            )
                         )
+                    }
                 )
             } catch (e) {
                 store.dispatch(initialiseLanguageRejected(e))

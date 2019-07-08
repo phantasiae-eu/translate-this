@@ -13,6 +13,7 @@ import LanguageSelector from './LanguageSelector.component'
 
 const mapStateToProps = (state: AppState): LanguageSelectorStateProps => ({
     language: state.languageSelector.language,
+    languages: state.initialiser,
 })
 const mapDispatchToProps = (
     dispatch: Dispatch

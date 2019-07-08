@@ -1,4 +1,5 @@
 import { ActionCreator } from 'redux'
+import { Language } from './initialiser.model'
 
 export const INITIALISE_LANGUAGE = 'INITIALISE_LANGUAGE'
 export const INITIALISE_LANGUAGE_ACCEPTED = 'INITIALISE_LANGUAGE_ACCEPTED'
@@ -13,10 +14,7 @@ export interface AInitialiseLanguageRejected {
 }
 export interface AInitialiseLanguageAccepted {
     type: typeof INITIALISE_LANGUAGE_ACCEPTED
-    languages: Languages
-}
-export interface Languages {
-    [key: string]: { dir: string; name: string; nativeName: string }
+    languages: Language[]
 }
 
 export const initialiseLanguage: ActionCreator<
@@ -25,7 +23,7 @@ export const initialiseLanguage: ActionCreator<
 
 export const initialiseLanguageAccepted: ActionCreator<
     AInitialiseLanguageAccepted
-> = (languages: Languages): AInitialiseLanguageAccepted => ({
+> = (languages: Language[]): AInitialiseLanguageAccepted => ({
     type: INITIALISE_LANGUAGE_ACCEPTED,
     languages,
 })
