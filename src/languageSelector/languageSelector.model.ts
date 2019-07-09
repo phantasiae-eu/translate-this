@@ -1,21 +1,12 @@
 import { Dispatch } from 'redux'
-import { ALanguageSelectorChange } from './languageSelector.actions'
-import { Language } from '../initialiser/initialiser.model'
+import { ALanguagesChange } from '../languages/languages.actions'
+import { Language } from '../languages/languages.model'
 
-export interface LanguageSelector {
-    language: string
-}
-
-export const defaultLanguageSelector: LanguageSelector = {
-    language: 'Italian',
-}
-
-export interface LanguageSelectorStateProps extends LanguageSelector {
-    language: string
+export interface LanguageSelectorStateProps {
     languages: Language[]
 }
 
 export interface LanguageSelectorDispatchProps {
-    changeLanguage: (language: string) => ALanguageSelectorChange
+    changeLanguage: (language: string) => ALanguagesChange
     dispatch: Dispatch
 }

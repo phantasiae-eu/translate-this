@@ -1,30 +1,28 @@
 import { Middleware, Dispatch } from 'redux'
 import { AppState } from '../store/store.model'
 import {
-    LANGUAGE_SELECTOR_CHANGE,
+    LANGUAGES_CHANGE,
     changeLanguageAccepted,
-    ALanguageSelectorChange,
-    ALanguageSelectorChangeAccepted,
+    ALanguagesChange,
+    ALanguagesChangeAccepted,
     changeLanguageRejected,
-} from './languageSelector.actions'
+} from '../languages/languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
 import { key } from '../../secretConfig'
 
 export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     store
 ): ((
-    next: Dispatch<ALanguageSelectorChange>
-) => (action: ALanguageSelectorChange) => Promise<ALanguageSelectorChange>) => (
-    next: Dispatch<ALanguageSelectorChange>
-): ((
-    action: ALanguageSelectorChange
-) => Promise<ALanguageSelectorChange>) => async (
-    action: ALanguageSelectorChange
-): Promise<ALanguageSelectorChange> => {
+    next: Dispatch<ALanguagesChange>
+) => (action: ALanguagesChange) => Promise<ALanguagesChange>) => (
+    next: Dispatch<ALanguagesChange>
+): ((action: ALanguagesChange) => Promise<ALanguagesChange>) => async (
+    action: ALanguagesChange
+): Promise<ALanguagesChange> => {
     const result = next(action)
 
     switch (action.type) {
-        case LANGUAGE_SELECTOR_CHANGE: {
+        case LANGUAGES_CHANGE: {
             try {
                 const options: AxiosRequestConfig = {
                     method: 'post',
@@ -48,7 +46,7 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                 await axios(options)
                     .then((res): void => console.log(res))
                     .then(
-                        (): ALanguageSelectorChangeAccepted =>
+                        (): ALanguagesChangeAccepted =>
                             store.dispatch(
                                 changeLanguageAccepted(action.language)
                             )

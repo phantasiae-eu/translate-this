@@ -4,13 +4,12 @@ import {
     LanguageSelectorStateProps,
     LanguageSelectorDispatchProps,
 } from './languageSelector.model'
-import { ALanguageSelectorChange } from './languageSelector.actions'
-import { Language } from '../initialiser/initialiser.model'
+import { ALanguagesChange } from '../languages/languages.actions'
+import { Language } from '../languages/languages.model'
 
 export default class LanguageSelector extends React.Component<
     LanguageSelectorStateProps & LanguageSelectorDispatchProps
 > {
-    private languages: string[] = ['Italian', 'English', 'Chinese']
     public constructor(
         props: Readonly<
             LanguageSelectorStateProps & LanguageSelectorDispatchProps
@@ -29,7 +28,7 @@ export default class LanguageSelector extends React.Component<
                 <Picker
                     selectedValue={selectedValue}
                     style={{ height: 50, width: 100 }}
-                    onValueChange={(itemValue): ALanguageSelectorChange =>
+                    onValueChange={(itemValue): ALanguagesChange =>
                         this.props.changeLanguage(itemValue)
                     }
                 >

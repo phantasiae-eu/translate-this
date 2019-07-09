@@ -1,7 +1,5 @@
-import { LanguageSelector } from '../languageSelector/languageSelector.model'
-import { Language } from '../initialiser/initialiser.model'
+import { Language } from '../languages/languages.model'
 
 export interface AppState {
-    languageSelector: LanguageSelector
-    initialiser: Language[]
+    languages: Language[]
 }

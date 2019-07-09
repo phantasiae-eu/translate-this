@@ -1,27 +1,27 @@
 import { AppState } from '../store/store.model'
 import { Middleware, Dispatch } from 'redux'
 import {
-    INITIALISE_LANGUAGE,
-    AInitialiseLanguage,
-    initialiseLanguageRejected,
-    initialiseLanguageAccepted,
-    AInitialiseLanguageAccepted,
-} from './initialiser.actions'
+    LANGUAGES_INITIALISE,
+    ALanguagesInitialise,
+    languagesInitialiseRejected,
+    languagesInitialiseAccepted,
+    ALanguagesInitialiseAccepted,
+} from './languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
-import { Language, Languages } from './initialiser.model'
+import { Language, Languages } from './languages.model'
 
-export const initialiserMiddleware: Middleware<{}, AppState> = (
+export const languagesMiddleware: Middleware<{}, AppState> = (
     store
 ): ((
-    next: Dispatch<AInitialiseLanguage>
-) => (action: AInitialiseLanguage) => Promise<AInitialiseLanguage>) => (
-    next: Dispatch<AInitialiseLanguage>
-): ((action: AInitialiseLanguage) => Promise<AInitialiseLanguage>) => async (
-    action: AInitialiseLanguage
-): Promise<AInitialiseLanguage> => {
+    next: Dispatch<ALanguagesInitialise>
+) => (action: ALanguagesInitialise) => Promise<ALanguagesInitialise>) => (
+    next: Dispatch<ALanguagesInitialise>
+): ((action: ALanguagesInitialise) => Promise<ALanguagesInitialise>) => async (
+    action: ALanguagesInitialise
+): Promise<ALanguagesInitialise> => {
     const result = next(action)
     switch (action.type) {
-        case INITIALISE_LANGUAGE: {
+        case LANGUAGES_INITIALISE: {
             try {
                 const options: AxiosRequestConfig = {
                     method: 'get',
@@ -30,10 +30,10 @@ export const initialiserMiddleware: Middleware<{}, AppState> = (
                     params: { 'api-version': '3.0' },
                 }
                 axios(options).then(
-                    (res): AInitialiseLanguageAccepted => {
+                    (res): ALanguagesInitialiseAccepted => {
                         const translation: Languages = res.data.translation
                         return store.dispatch(
-                            initialiseLanguageAccepted(
+                            languagesInitialiseAccepted(
                                 Object.entries(translation).map(
                                     (obj, i): Language => ({
                                         code: obj['0'],
@@ -46,7 +46,7 @@ export const initialiserMiddleware: Middleware<{}, AppState> = (
                     }
                 )
             } catch (e) {
-                store.dispatch(initialiseLanguageRejected(e))
+                store.dispatch(languagesInitialiseRejected(e))
             }
             break
         }

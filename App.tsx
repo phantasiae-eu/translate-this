@@ -4,7 +4,7 @@ import Header from './src/header/Header.component'
 import LanguageSelector from './src/languageSelector/LanguageSelector.container'
 import { Provider } from 'react-redux'
 import store from './src/store/store'
-import Initialise from './src/initialiser/initialiser.container'
+import Languages from './src/languages/languages.container'
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 const App: React.FunctionComponent<{}> = (): ReactElement => (
     <Provider store={store}>
         <View style={styles.container}>
-            <Initialise />
+            <Languages />
             <Header />
             <LanguageSelector />
             <Text>Work in progress!</Text>

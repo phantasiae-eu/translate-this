@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux'
-import { AInitialiseLanguage } from './initialiser.actions'
+import { ALanguagesInitialise } from './languages.actions'
 
-export interface InitialiserDispatchProps {
-    initialiseLanguages: () => AInitialiseLanguage
+export interface LanguagesDispatchProps {
+    languagesInitialise: () => ALanguagesInitialise
     dispatch: Dispatch
 }
 
