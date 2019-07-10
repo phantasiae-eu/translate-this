@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { View, Picker } from 'react-native'
+import { View, Picker, Text } from 'react-native'
 import {
     LanguageSelectorStateProps,
     LanguageSelectorDispatchProps,
@@ -25,11 +25,12 @@ export default class LanguageSelector extends React.Component<
             selectedLanguage.length === 0 ? undefined : selectedLanguage[0].code
         return (
             <View>
+                <Text>Target</Text>
                 <Picker
                     selectedValue={selectedValue}
                     style={{ height: 50, width: 100 }}
                     onValueChange={(itemValue): ALanguagesChange =>
-                        this.props.changeLanguage(itemValue, ESelectors.SOURCE)
+                        this.props.changeLanguage(itemValue, ESelectors.TARGET)
                     }
                 >
                     {this.props.languages.map(
