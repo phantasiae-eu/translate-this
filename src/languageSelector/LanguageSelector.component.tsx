@@ -5,7 +5,7 @@ import {
     LanguageSelectorDispatchProps,
 } from './languageSelector.model'
 import { ALanguagesChange } from '../languages/languages.actions'
-import { Language } from '../languages/languages.model'
+import { Language, ESelectors } from '../languages/languages.model'
 
 export default class LanguageSelector extends React.Component<
     LanguageSelectorStateProps & LanguageSelectorDispatchProps
@@ -29,7 +29,7 @@ export default class LanguageSelector extends React.Component<
                     selectedValue={selectedValue}
                     style={{ height: 50, width: 100 }}
                     onValueChange={(itemValue): ALanguagesChange =>
-                        this.props.changeLanguage(itemValue)
+                        this.props.changeLanguage(itemValue, ESelectors.SOURCE)
                     }
                 >
                     {this.props.languages.map(

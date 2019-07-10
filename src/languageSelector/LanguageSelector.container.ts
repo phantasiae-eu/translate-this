@@ -10,15 +10,18 @@ import {
 } from './languageSelector.model'
 import { AppState } from '../store/store.model'
 import LanguageSelector from './LanguageSelector.component'
+import { ESelectors } from '../languages/languages.model'
 
 const mapStateToProps = (state: AppState): LanguageSelectorStateProps => ({
-    languages: state.languages,
+    languages: state.languages.source,
 })
 const mapDispatchToProps = (
     dispatch: Dispatch
 ): LanguageSelectorDispatchProps => ({
-    changeLanguage: (language: string): ALanguagesChange =>
-        dispatch(languagesChange(language)),
+    changeLanguage: (
+        language: string,
+        selector: ESelectors
+    ): ALanguagesChange => dispatch(languagesChange(language, selector)),
     dispatch,
 })
 

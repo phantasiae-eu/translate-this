@@ -17,3 +17,18 @@ export interface Language {
     nativeName: string
     selected: boolean
 }
+
+export enum ESelectors {
+    SOURCE = 'SOURCE',
+    TARGET = 'TARGET',
+}
+
+export interface LanguageSelector {
+    source: Language[]
+    target: Language[]
+}
+
+export const defaultLanguageSelector: LanguageSelector = {
+    source: [],
+    target: [],
+}
