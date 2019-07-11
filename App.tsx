@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
 import Header from './src/header/Header.component'
+import TextSource from './src/textSource/textSource.container'
 import LanguageSelector from './src/languageSelector/LanguageSelector.container'
 import { ESelectors } from './src/languages/languages.model'
 
@@ -33,6 +34,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
             <View style={styles.container}>
                 <Languages />
                 <Header />
+                <TextSource />
                 <View style={styles.selectors}>
                     <LanguageSelector selector={ESelectors.SOURCE} />
                     <LanguageSelector selector={ESelectors.TARGET} />
