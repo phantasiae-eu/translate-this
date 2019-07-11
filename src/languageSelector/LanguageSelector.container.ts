@@ -12,8 +12,15 @@ import { AppState } from '../store/store.model'
 import LanguageSelector from './LanguageSelector.component'
 import { ESelectors } from '../languages/languages.model'
 
-const mapStateToProps = (state: AppState): LanguageSelectorStateProps => ({
-    languages: state.languages.source,
+const mapStateToProps = (
+    state: AppState,
+    ownProps: { selector: ESelectors }
+): LanguageSelectorStateProps => ({
+    languages:
+        state.languages[
+            ownProps.selector === ESelectors.SOURCE ? 'source' : 'target'
+        ],
+    selector: ownProps.selector,
 })
 const mapDispatchToProps = (
     dispatch: Dispatch

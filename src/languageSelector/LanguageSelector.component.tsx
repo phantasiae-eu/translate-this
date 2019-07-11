@@ -25,12 +25,19 @@ export default class LanguageSelector extends React.Component<
             selectedLanguage.length === 0 ? undefined : selectedLanguage[0].code
         return (
             <View>
-                <Text>Target</Text>
+                <Text>
+                    {this.props.selector === ESelectors.SOURCE
+                        ? 'Source'
+                        : 'Target'}
+                </Text>
                 <Picker
                     selectedValue={selectedValue}
                     style={{ height: 50, width: 100 }}
                     onValueChange={(itemValue): ALanguagesChange =>
-                        this.props.changeLanguage(itemValue, ESelectors.TARGET)
+                        this.props.changeLanguage(
+                            itemValue,
+                            this.props.selector
+                        )
                     }
                 >
                     {this.props.languages.map(

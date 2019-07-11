@@ -4,6 +4,7 @@ import { Language, ESelectors } from '../languages/languages.model'
 
 export interface LanguageSelectorStateProps {
     languages: Language[]
+    selector: ESelectors
 }
 
 export interface LanguageSelectorDispatchProps {

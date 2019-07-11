@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react'
 import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
 import Header from './src/header/Header.component'
-import LanguageSelectorSource from './src/languageSelectorSource/LanguageSelector.container'
-import LanguageSelectorTarget from './src/languageSelectorTarget/LanguageSelector.container'
+import LanguageSelector from './src/languageSelector/LanguageSelector.container'
+import { ESelectors } from './src/languages/languages.model'
 
 import { Provider } from 'react-redux'
 import store from './src/store/store'
@@ -34,8 +34,8 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                 <Languages />
                 <Header />
                 <View style={styles.selectors}>
-                    <LanguageSelectorSource />
-                    <LanguageSelectorTarget />
+                    <LanguageSelector selector={ESelectors.SOURCE} />
+                    <LanguageSelector selector={ESelectors.TARGET} />
                 </View>
 
                 <Text>Work in progress!</Text>
