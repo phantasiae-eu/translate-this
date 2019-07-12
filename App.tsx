@@ -3,6 +3,7 @@ import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
 import Header from './src/header/Header.component'
 import TextSource from './src/textSource/textSource.container'
+import TextTarget from './src/textTarget/textTarget.container'
 import LanguageSelector from './src/languageSelector/LanguageSelector.container'
 import { ESelectors } from './src/languages/languages.model'
 
@@ -23,8 +24,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     selectors: {
+        width: '100%',
+        height: 300,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        borderWidth: 1,
+        borderColor: 'grey',
     },
 })
 
@@ -39,7 +44,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                     <LanguageSelector selector={ESelectors.SOURCE} />
                     <LanguageSelector selector={ESelectors.TARGET} />
                 </View>
-
+                <TextTarget />
                 <Text>Work in progress!</Text>
             </View>
         </SafeAreaView>
