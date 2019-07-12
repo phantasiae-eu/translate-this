@@ -22,12 +22,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'space-between',
+        padding: 10,
     },
     selectors: {
         width: '100%',
-        height: 300,
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    selector: {
+        width: '40%',
         borderWidth: 1,
         borderColor: 'grey',
     },
@@ -41,8 +44,14 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                 <Header />
                 <TextSource />
                 <View style={styles.selectors}>
-                    <LanguageSelector selector={ESelectors.SOURCE} />
-                    <LanguageSelector selector={ESelectors.TARGET} />
+                    <LanguageSelector
+                        selector={ESelectors.SOURCE}
+                        style={styles.selector}
+                    />
+                    <LanguageSelector
+                        selector={ESelectors.TARGET}
+                        style={styles.selector}
+                    />
                 </View>
                 <TextTarget />
                 <Text>Work in progress!</Text>

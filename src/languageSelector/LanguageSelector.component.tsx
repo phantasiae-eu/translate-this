@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
-import { View, Picker, Text } from 'react-native'
+import { View, Picker } from 'react-native'
 import {
     LanguageSelectorStateProps,
     LanguageSelectorDispatchProps,
 } from './languageSelector.model'
 import { ALanguagesChange } from '../languages/languages.actions'
-import { Language, ESelectors } from '../languages/languages.model'
+import { Language } from '../languages/languages.model'
 
 export default class LanguageSelector extends React.Component<
     LanguageSelectorStateProps & LanguageSelectorDispatchProps
@@ -23,16 +23,16 @@ export default class LanguageSelector extends React.Component<
         )
         const selectedValue: string =
             selectedLanguage.length === 0 ? undefined : selectedLanguage[0].code
+        console.log(this.props.style)
         return (
-            <View>
-                <Text>
-                    {this.props.selector === ESelectors.SOURCE
-                        ? 'Source'
-                        : 'Target'}
-                </Text>
+            <View style={this.props.style}>
                 <Picker
                     selectedValue={selectedValue}
-                    style={{ height: 50, width: 100 }}
+                    style={{
+                        width: '100%',
+                        borderWidth: 1,
+                        borderColor: 'grey',
+                    }}
                     onValueChange={(itemValue): ALanguagesChange =>
                         this.props.changeLanguage(
                             itemValue,

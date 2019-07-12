@@ -11,11 +11,13 @@ import {
 import { AppState } from '../store/store.model'
 import LanguageSelector from './LanguageSelector.component'
 import { ESelectors } from '../languages/languages.model'
+import { StyleProp, ViewStyle } from 'react-native'
 
 const mapStateToProps = (
     state: AppState,
-    ownProps: { selector: ESelectors }
+    ownProps: { selector: ESelectors; style: StyleProp<ViewStyle> }
 ): LanguageSelectorStateProps => ({
+    style: ownProps.style,
     languages:
         state.languages[
             ownProps.selector === ESelectors.SOURCE ? 'source' : 'target'
