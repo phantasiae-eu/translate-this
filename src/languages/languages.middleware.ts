@@ -9,6 +9,8 @@ import {
 } from './languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
 import { Language, Languages } from './languages.model'
+import { baseURL, apiVersion } from '../../config'
+import { initialiseOptions } from '../helpers/axios'
 
 export const languagesMiddleware: Middleware<{}, AppState> = (
     store
@@ -23,12 +25,10 @@ export const languagesMiddleware: Middleware<{}, AppState> = (
     switch (action.type) {
         case LANGUAGES_INITIALISE: {
             try {
-                const options: AxiosRequestConfig = {
-                    method: 'get',
-                    baseURL: 'https://api.cognitive.microsofttranslator.com',
-                    url: 'languages',
-                    params: { 'api-version': '3.0' },
-                }
+                const options: AxiosRequestConfig = initialiseOptions(
+                    baseURL,
+                    apiVersion
+                )
                 axios(options).then(
                     (res): ALanguagesInitialiseAccepted => {
                         const translation: Languages = res.data.translation
