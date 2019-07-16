@@ -5,6 +5,7 @@ import Header from './src/header/Header.component'
 import TextSource from './src/textSource/textSource.container'
 import TextTarget from './src/textTarget/textTarget.container'
 import LanguageSelector from './src/languageSelector/LanguageSelector.container'
+import LanguageSwitch from './src/languageSwitch/languageSwitch.container'
 import { ESelectors } from './src/languages/languages.model'
 
 import { Provider } from 'react-redux'
@@ -48,6 +49,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                         selector={ESelectors.SOURCE}
                         style={styles.selector}
                     />
+                    <LanguageSwitch />
                     <LanguageSelector
                         selector={ESelectors.TARGET}
                         style={styles.selector}
