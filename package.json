@@ -3,9 +3,9 @@
   "scripts": {
     "lint": "eslint . --ext .js,.ts,.tsx --fix && echo 'Lint complete.'",
     "build:android": "expo build:android",
-    "start": "expo start",
-    "android": "expo start --android",
-    "android-emulator": "emulator -avd Pixel_3_XL_API_29",
+    "start": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start",
+    "android": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start --android",
+    "android-emulator": "~/Library/Android/sdk/emulator/emulator -avd Pixel_2_API_28",
     "ios": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
