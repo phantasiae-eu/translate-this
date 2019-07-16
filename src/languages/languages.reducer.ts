@@ -10,6 +10,10 @@ import {
     LANGUAGES_INITIALISE_ACCEPTED,
 } from './languages.actions'
 import { LANGUAGES_CHANGE, ALanguagesChange } from './languages.actions'
+import {
+    LANGUAGE_SWITCH_ACCEPTED,
+    ALanguageSwitchAccepted,
+} from '../languageSwitch/languageSwitch.actions'
 
 const deepCopyLanguage = (ar: Language[]): Language[] =>
     JSON.parse(JSON.stringify(ar))
@@ -24,7 +28,7 @@ const selectLanguage = (ar: Language[], languageSelected: string): Language[] =>
 
 export const languages: Reducer<
     LanguageSelector,
-    ALanguagesInitialiseAccepted | ALanguagesChange
+    ALanguagesInitialiseAccepted | ALanguagesChange | ALanguageSwitchAccepted
 > = (state = defaultLanguageSelector, action): LanguageSelector => {
     switch (action.type) {
         case LANGUAGES_INITIALISE_ACCEPTED: {
@@ -43,6 +47,12 @@ export const languages: Reducer<
                       source: [...state.source],
                       target: selectLanguage(state.target, action.language),
                   }
+        }
+        case LANGUAGE_SWITCH_ACCEPTED: {
+            return {
+                source: [...state.target],
+                target: [...state.source],
+            }
         }
         default:
             return state
