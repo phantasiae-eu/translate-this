@@ -27,22 +27,6 @@ export const textTargetMiddleware: Middleware<{}, AppState> = (
     switch (action.type) {
         case CHANGE_TEXT_SOURCE: {
             try {
-                console.log(
-                    'store.getState().languages.source: ',
-                    store
-                        .getState()
-                        .languages.source.filter(
-                            (language: Language): boolean => language.selected
-                        )
-                )
-                console.log(
-                    'store.getState().languages.target: ',
-                    store
-                        .getState()
-                        .languages.target.filter(
-                            (language: Language): boolean => language.selected
-                        )
-                )
                 const options: AxiosRequestConfig = {
                     method: 'post',
                     baseURL: 'https://api.cognitive.microsofttranslator.com',

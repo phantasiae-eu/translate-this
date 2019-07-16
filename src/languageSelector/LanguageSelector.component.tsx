@@ -23,7 +23,6 @@ export default class LanguageSelector extends React.Component<
         )
         const selectedValue: string =
             selectedLanguage.length === 0 ? undefined : selectedLanguage[0].code
-        console.log(this.props.style)
         return (
             <View style={this.props.style}>
                 <Picker
