@@ -9,7 +9,10 @@ import {
     ALanguagesInitialiseAccepted,
     LANGUAGES_INITIALISE_ACCEPTED,
 } from './languages.actions'
-import { LANGUAGES_CHANGE, ALanguagesChange } from './languages.actions'
+import {
+    LANGUAGE_CHANGE_ACCEPTED,
+    ALanguageChangeAccepted,
+} from './languages.actions'
 import {
     LANGUAGE_SWITCH_ACCEPTED,
     ALanguageSwitchAccepted,
@@ -28,7 +31,9 @@ const selectLanguage = (ar: Language[], languageSelected: string): Language[] =>
 
 export const languages: Reducer<
     LanguageSelector,
-    ALanguagesInitialiseAccepted | ALanguagesChange | ALanguageSwitchAccepted
+    | ALanguagesInitialiseAccepted
+    | ALanguageChangeAccepted
+    | ALanguageSwitchAccepted
 > = (state = defaultLanguageSelector, action): LanguageSelector => {
     switch (action.type) {
         case LANGUAGES_INITIALISE_ACCEPTED: {
@@ -37,7 +42,7 @@ export const languages: Reducer<
                 target: deepCopyLanguage(action.languages),
             }
         }
-        case LANGUAGES_CHANGE: {
+        case LANGUAGE_CHANGE_ACCEPTED: {
             return action.selector === ESelectors.SOURCE
                 ? {
                       source: selectLanguage(state.source, action.language),
