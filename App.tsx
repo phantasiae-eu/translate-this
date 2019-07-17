@@ -9,8 +9,10 @@ import LanguageSwitch from './src/languageSwitch/languageSwitch.container'
 import { ESelectors } from './src/languages/languages.model'
 
 import { Provider } from 'react-redux'
-import store from './src/store/store'
 import Languages from './src/languages/languages.container'
+
+import store, { persistor } from './src/store/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const styles = StyleSheet.create({
     safeArea: {
@@ -39,26 +41,28 @@ const styles = StyleSheet.create({
 
 const App: React.FunctionComponent<{}> = (): ReactElement => (
     <Provider store={store}>
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.container}>
-                <Languages />
-                <Header />
-                <TextSource />
-                <View style={styles.selectors}>
-                    <LanguageSelector
-                        selector={ESelectors.SOURCE}
-                        style={styles.selector}
-                    />
-                    <LanguageSwitch />
-                    <LanguageSelector
-                        selector={ESelectors.TARGET}
-                        style={styles.selector}
-                    />
+        <PersistGate loading={null} persistor={persistor}>
+            <SafeAreaView style={styles.safeArea}>
+                <View style={styles.container}>
+                    <Languages />
+                    <Header />
+                    <TextSource />
+                    <View style={styles.selectors}>
+                        <LanguageSelector
+                            selector={ESelectors.SOURCE}
+                            style={styles.selector}
+                        />
+                        <LanguageSwitch />
+                        <LanguageSelector
+                            selector={ESelectors.TARGET}
+                            style={styles.selector}
+                        />
+                    </View>
+                    <TextTarget />
+                    <Text>Work in progress!</Text>
                 </View>
-                <TextTarget />
-                <Text>Work in progress!</Text>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </PersistGate>
     </Provider>
 )
 

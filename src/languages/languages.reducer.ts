@@ -38,8 +38,8 @@ export const languages: Reducer<
     switch (action.type) {
         case LANGUAGES_INITIALISE_ACCEPTED: {
             return {
-                source: deepCopyLanguage(action.languages),
-                target: deepCopyLanguage(action.languages),
+                source: deepCopyLanguage(action.languages.source),
+                target: deepCopyLanguage(action.languages.target),
             }
         }
         case LANGUAGE_CHANGE_ACCEPTED: {

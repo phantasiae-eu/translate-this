@@ -1,5 +1,5 @@
 import { ActionCreator } from 'redux'
-import { Language } from './languages.model'
+import { LanguageSelector } from './languages.model'
 import { ESelectors } from './languages.model'
 
 export const LANGUAGES_INITIALISE = 'LANGUAGES_INITIALISE'
@@ -20,7 +20,7 @@ export interface ALanguagesInitialiseRejected {
 
 export interface ALanguagesInitialiseAccepted {
     type: typeof LANGUAGES_INITIALISE_ACCEPTED
-    languages: Language[]
+    languages: LanguageSelector
 }
 
 export interface ALanguagesChange {
@@ -46,7 +46,7 @@ export const languagesInitialise: ActionCreator<
 
 export const languagesInitialiseAccepted: ActionCreator<
     ALanguagesInitialiseAccepted
-> = (languages: Language[]): ALanguagesInitialiseAccepted => ({
+> = (languages: LanguageSelector): ALanguagesInitialiseAccepted => ({
     type: LANGUAGES_INITIALISE_ACCEPTED,
     languages,
 })

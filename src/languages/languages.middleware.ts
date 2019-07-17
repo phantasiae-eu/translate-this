@@ -8,9 +8,10 @@ import {
     ALanguagesInitialiseAccepted,
 } from './languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
-import { Language, Languages } from './languages.model'
+import { Languages } from './languages.model'
 import { baseURL, apiVersion } from '../../config'
 import { initialiseOptions } from '../helpers/axios'
+import { initialise } from '../helpers/languages'
 
 export const languagesMiddleware: Middleware<{}, AppState> = (
     store
@@ -31,15 +32,14 @@ export const languagesMiddleware: Middleware<{}, AppState> = (
                 )
                 axios(options).then(
                     (res): ALanguagesInitialiseAccepted => {
-                        const translation: Languages = res.data.translation
+                        console.log(store.getState().languages)
+                        const retrievedLanguages: Languages =
+                            res.data.translation
                         return store.dispatch(
                             languagesInitialiseAccepted(
-                                Object.entries(translation).map(
-                                    (obj, i): Language => ({
-                                        code: obj['0'],
-                                        ...obj['1'],
-                                        selected: i === 0 ? true : false,
-                                    })
+                                initialise(
+                                    store.getState().languages,
+                                    retrievedLanguages
                                 )
                             )
                         )
