@@ -5,8 +5,8 @@ const list = (
     stored: LanguageSelector,
     retrieved: Languages,
     selector: ESelectors
-): Language[] =>
-    Object.entries(retrieved).map(
+): Language[] => {
+    const languages: Language[] = Object.entries(retrieved).map(
         (obj): Language => ({
             code: obj['0'],
             ...obj['1'],
@@ -20,6 +20,13 @@ const list = (
                 : false,
         })
     )
+    return languages.some((language: Language): boolean => !!language.selected)
+        ? languages
+        : languages.map(
+              (language: Language, i: number): Language =>
+                  i === 0 ? { ...language, selected: true } : language
+          )
+}
 
 export const initialise = (
     stored: LanguageSelector,
