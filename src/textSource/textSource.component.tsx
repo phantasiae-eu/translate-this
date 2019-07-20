@@ -15,23 +15,15 @@ const styles = StyleSheet.create({
     },
 })
 
-export default class TextSource extends React.Component<
-    TextSourceStateProps & TextSourceDispatchProps
-> {
-    public constructor(
-        props: Readonly<TextSourceStateProps & TextSourceDispatchProps>
-    ) {
-        super(props)
-    }
-    public render(): ReactElement {
-        return (
-            <TextInput
-                style={styles.textInput}
-                onChangeText={(text: string): AChangeTextSource =>
-                    this.props.changeText(text)
-                }
-                value={this.props.text}
-            />
-        )
-    }
-}
+const textSource: React.FC<TextSourceStateProps & TextSourceDispatchProps> = (
+    props: TextSourceStateProps & TextSourceDispatchProps
+): ReactElement => (
+    <TextInput
+        style={styles.textInput}
+        onChangeText={(text: string): AChangeTextSource =>
+            props.changeText(text)
+        }
+        value={props.text}
+    />
+)
+export default textSource
