@@ -11,11 +11,8 @@ const styles = StyleSheet.create({
     },
 })
 
-export default class TextTarget extends React.Component<TextTargetStateProps> {
-    public constructor(props: Readonly<TextTargetStateProps>) {
-        super(props)
-    }
-    public render(): ReactElement {
-        return <Text style={styles.text}>{this.props.text}</Text>
-    }
-}
+const textTarget: React.FC<TextTargetStateProps> = (
+    props: TextTargetStateProps
+): ReactElement => <Text style={styles.text}>{props.text}</Text>
+
+export default textTarget
