@@ -32,7 +32,6 @@ export const languagesMiddleware: Middleware<{}, AppState> = (
                 )
                 axios(options).then(
                     (res): ALanguagesInitialiseAccepted => {
-                        console.log(store.getState().languages)
                         const retrievedLanguages: Languages =
                             res.data.translation
                         return store.dispatch(
