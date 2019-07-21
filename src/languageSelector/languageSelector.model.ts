@@ -7,6 +7,7 @@ export interface LanguageSelectorStateProps {
     style: StyleProp<ViewStyle>
     languages: Language[]
     selector: ESelectors
+    selectedCode: string | undefined
 }
 
 export interface LanguageSelectorDispatchProps {

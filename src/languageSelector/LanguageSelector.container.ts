@@ -10,20 +10,27 @@ import {
 } from './languageSelector.model'
 import { AppState } from '../store/store.model'
 import LanguageSelector from './LanguageSelector.component'
-import { ESelectors } from '../languages/languages.model'
+import { ESelectors, Language } from '../languages/languages.model'
 import { StyleProp, ViewStyle } from 'react-native'
 
 const mapStateToProps = (
     state: AppState,
     ownProps: { selector: ESelectors; style: StyleProp<ViewStyle> }
-): LanguageSelectorStateProps => ({
-    style: ownProps.style,
-    languages:
+): LanguageSelectorStateProps => {
+    const languages: Language[] =
         state.languages[
             ownProps.selector === ESelectors.SOURCE ? 'source' : 'target'
-        ],
-    selector: ownProps.selector,
-})
+        ]
+    const selectedLanguage: Language = languages
+        .filter((obj): string => (obj.selected ? obj.code : null))
+        .shift()
+    return {
+        style: ownProps.style,
+        languages,
+        selector: ownProps.selector,
+        selectedCode: selectedLanguage && selectedLanguage.code,
+    }
+}
 const mapDispatchToProps = (
     dispatch: Dispatch
 ): LanguageSelectorDispatchProps => ({
