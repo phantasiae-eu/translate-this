@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
 
 const textTarget: React.FC<TextTargetStateProps> = (
     props: TextTargetStateProps
-): ReactElement => <Text style={styles.text}>{props.text}</Text>
+): ReactElement => (
+    <Text selectable style={styles.text}>
+        {props.text}
+    </Text>
+)
 
 export default textTarget
