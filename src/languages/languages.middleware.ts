@@ -6,9 +6,15 @@ import {
     languagesInitialiseRejected,
     languagesInitialiseAccepted,
     ALanguagesInitialiseAccepted,
+    ATransliterationInitialiseAccepted,
+    transliterationInitialiseAccepted,
 } from './languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
-import { Languages } from './languages.model'
+import {
+    Languages,
+    Transliteration,
+    TransliterationRaw,
+} from './languages.model'
 import { baseURL, apiVersion } from '../../config'
 import { initialiseOptions } from '../helpers/axios'
 import { initialise } from '../helpers/languages'
@@ -30,20 +36,36 @@ export const languagesMiddleware: Middleware<{}, AppState> = (
                     baseURL,
                     apiVersion
                 )
-                axios(options).then(
-                    (res): ALanguagesInitialiseAccepted => {
-                        const retrievedLanguages: Languages =
-                            res.data.translation
-                        return store.dispatch(
+                axios(options).then((res): [
+                    ALanguagesInitialiseAccepted,
+                    ATransliterationInitialiseAccepted
+                ] => {
+                    const transliterationRaw: TransliterationRaw[] = Object.entries(
+                        res.data.transliteration
+                    )
+                    const transliteration: Transliteration[] = transliterationRaw.map(
+                        (obj: TransliterationRaw): Transliteration => {
+                            return {
+                                code: obj[0],
+                                ...obj[1],
+                            }
+                        }
+                    )
+                    const retrievedLanguages: Languages = res.data.translation
+                    return [
+                        store.dispatch(
                             languagesInitialiseAccepted(
                                 initialise(
                                     store.getState().languages,
                                     retrievedLanguages
                                 )
                             )
-                        )
-                    }
-                )
+                        ),
+                        store.dispatch(
+                            transliterationInitialiseAccepted(transliteration)
+                        ),
+                    ]
+                })
             } catch (e) {
                 store.dispatch(languagesInitialiseRejected(e))
             }

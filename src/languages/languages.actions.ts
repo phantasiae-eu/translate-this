@@ -1,5 +1,5 @@
 import { ActionCreator } from 'redux'
-import { LanguageSelector } from './languages.model'
+import { LanguageSelector, Transliteration } from './languages.model'
 import { ESelectors } from './languages.model'
 
 export const LANGUAGES_INITIALISE = 'LANGUAGES_INITIALISE'
@@ -8,6 +8,8 @@ export const LANGUAGES_INITIALISE_REJECTED = 'LANGUAGES_INITIALISE_REJECTED'
 export const LANGUAGES_CHANGE = 'LANGUAGES_CHANGE'
 export const LANGUAGE_CHANGE_ACCEPTED = 'LANGUAGE_CHANGE_ACCEPTED'
 export const LANGUAGE_CHANGE_REJECTED = 'LANGUAGE_CHANGE_REJECTED'
+export const TRANSLITERATION_INITIALISE_ACCEPTED =
+    'TRANSLITERATION_INITIALISE_ACCEPTED'
 
 export interface ALanguagesInitialise {
     type: typeof LANGUAGES_INITIALISE
@@ -38,6 +40,11 @@ export interface ALanguageChangeAccepted {
 export interface ALanguageChangeRejected {
     type: typeof LANGUAGE_CHANGE_REJECTED
     error: Error
+}
+
+export interface ATransliterationInitialiseAccepted {
+    type: typeof TRANSLITERATION_INITIALISE_ACCEPTED
+    payload: Transliteration[]
 }
 
 export const languagesInitialise: ActionCreator<
@@ -81,4 +88,11 @@ export const languageChangeRejected: ActionCreator<ALanguageChangeRejected> = (
 ): ALanguageChangeRejected => ({
     type: LANGUAGE_CHANGE_REJECTED,
     error,
+})
+
+export const transliterationInitialiseAccepted: ActionCreator<
+    ATransliterationInitialiseAccepted
+> = (payload: Transliteration[]): ATransliterationInitialiseAccepted => ({
+    type: TRANSLITERATION_INITIALISE_ACCEPTED,
+    payload,
 })
