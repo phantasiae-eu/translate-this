@@ -4,6 +4,8 @@ import {
     ATextTargetAccepted,
     textTargetAccepted,
     textTargetRejected,
+    ATextTargetTransliterate,
+    textTargetTransliterate,
 } from '../textTarget/textTarget.actions'
 import {
     AChangeTextSource,
@@ -61,12 +63,20 @@ export const textTargetMiddleware: Middleware<{}, AppState> = (
                     key,
                     text
                 )
-                await axios(options).then(
-                    (res: AxiosResponse): ATextTargetAccepted =>
-                        store.dispatch(
-                            textTargetAccepted(res.data[0].translations[0].text)
+                await axios(options).then((res: AxiosResponse): [
+                    ATextTargetAccepted,
+                    ATextTargetTransliterate
+                ] => [
+                    store.dispatch(
+                        textTargetAccepted(res.data[0].translations[0].text)
+                    ),
+                    store.dispatch(
+                        textTargetTransliterate(
+                            res.data[0].translations[0].text,
+                            res.data[0].translations[0].to
                         )
-                )
+                    ),
+                ])
             } catch (e) {
                 store.dispatch(textTargetRejected(e))
             }
