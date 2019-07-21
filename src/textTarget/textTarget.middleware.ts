@@ -44,12 +44,14 @@ export const textTargetMiddleware: Middleware<{}, AppState> = (
                     .getState()
                     .languages['source'].filter(
                         (language: Language): boolean => language.selected
-                    )[0].code
+                    )
+                    .shift().code
                 const to: string = store
                     .getState()
                     .languages['target'].filter(
                         (language: Language): boolean => language.selected
-                    )[0].code
+                    )
+                    .shift().code
                 const text: string = action.text
                 const options: AxiosRequestConfig = translateOptions(
                     baseURL,
@@ -76,12 +78,14 @@ export const textTargetMiddleware: Middleware<{}, AppState> = (
                     .getState()
                     .languages['target'].filter(
                         (language: Language): boolean => language.selected
-                    )[0].code
+                    )
+                    .shift().code
                 const to: string = store
                     .getState()
                     .languages['source'].filter(
                         (language: Language): boolean => language.selected
-                    )[0].code
+                    )
+                    .shift().code
                 const text: string = store.getState().textTarget.text
                 const options: AxiosRequestConfig = translateOptions(
                     baseURL,
