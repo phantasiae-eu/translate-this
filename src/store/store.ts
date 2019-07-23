@@ -10,6 +10,7 @@ import { languageSelectorMiddleware } from '../languageSelector/languageSelector
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['transliteration'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

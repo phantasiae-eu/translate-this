@@ -10,11 +10,11 @@ import {
     transliterationInitialiseAccepted,
 } from './languages.actions'
 import axios, { AxiosRequestConfig } from 'axios'
+import { Languages } from './languages.model'
 import {
-    Languages,
     Transliteration,
     TransliterationRaw,
-} from './languages.model'
+} from '../transliteration/transliteration.model'
 import { baseURL, apiVersion } from '../../config'
 import { initialiseOptions } from '../helpers/axios'
 import { initialise } from '../helpers/languages'

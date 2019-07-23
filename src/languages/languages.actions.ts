@@ -1,5 +1,6 @@
 import { ActionCreator } from 'redux'
-import { LanguageSelector, Transliteration } from './languages.model'
+import { LanguageSelector } from './languages.model'
+import { Transliteration } from '../transliteration/transliteration.model'
 import { ESelectors } from './languages.model'
 
 export const LANGUAGES_INITIALISE = 'LANGUAGES_INITIALISE'
