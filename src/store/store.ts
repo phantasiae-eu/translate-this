@@ -6,6 +6,7 @@ import rootReducer from './rootReducer'
 import { languagesMiddleware } from '../languages/languages.middleware'
 import { textTargetMiddleware } from '../textTarget/textTarget.middleware'
 import { languageSelectorMiddleware } from '../languageSelector/languageSelector.middleware'
+import { transliterationMiddleware } from '../transliteration/transliteration.middleware'
 
 const persistConfig = {
     key: 'root',
@@ -21,7 +22,8 @@ const store = createStore(
         applyMiddleware(
             languagesMiddleware,
             textTargetMiddleware,
-            languageSelectorMiddleware
+            languageSelectorMiddleware,
+            transliterationMiddleware
         )
     )
 )

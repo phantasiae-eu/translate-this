@@ -24,7 +24,36 @@ export const translateOptions = (
     params: {
         'api-version': apiVersion,
         from,
-        to: to,
+        to,
+    },
+    headers: {
+        'Ocp-Apim-Subscription-Key': key,
+        'Content-type': 'application/json',
+    },
+    data: [
+        {
+            text,
+        },
+    ],
+})
+
+export const transliterationOptions = (
+    baseURL: string,
+    apiVersion: string,
+    key: string,
+    language: string,
+    fromScript: string,
+    toScript: string,
+    text: string
+): AxiosRequestConfig => ({
+    method: 'post',
+    baseURL,
+    url: 'transliterate',
+    params: {
+        'api-version': apiVersion,
+        language,
+        fromScript,
+        toScript,
     },
     headers: {
         'Ocp-Apim-Subscription-Key': key,
