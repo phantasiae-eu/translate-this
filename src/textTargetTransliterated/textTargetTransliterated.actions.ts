@@ -9,7 +9,6 @@ export interface ATextTargetTransliteratedAccepted {
     type: typeof TEXT_TARGET_TRANSLITERATED_ACCEPTED
     text: string
 }
-
 export interface ATextTargetTransliteratedRejected {
     type: typeof TEXT_TARGET_TRANSLITERATED_REJECTED
     error: Error

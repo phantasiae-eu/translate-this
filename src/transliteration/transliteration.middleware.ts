@@ -14,6 +14,7 @@ import {
     textTargetTransliteratedRejected,
 } from '../textTargetTransliterated/textTargetTransliterated.actions'
 import { Transliteration } from './transliteration.model'
+import { defaultTextTargetTransliterated } from '../textTargetTransliterated/textTargetTransliterated.model'
 
 export const transliterationMiddleware: Middleware<{}, AppState> = (
     store
@@ -40,11 +41,10 @@ export const transliterationMiddleware: Middleware<{}, AppState> = (
                 if (selectedLanguage.length === 0) {
                     store.dispatch(
                         textTargetTransliteratedAccepted(
-                            'no transliteration available'
+                            defaultTextTargetTransliterated.text
                         )
                     )
                 } else {
-                    console.log('selectedLanguage: ', selectedLanguage)
                     const options: AxiosRequestConfig = transliterationOptions(
                         baseURL,
                         apiVersion,

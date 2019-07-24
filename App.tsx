@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
 import Header from './src/header/Header.component'
+import TextTargetTransliterated from './src/textTargetTransliterated/textTargetTransliterated.container'
 import TextSource from './src/textSource/textSource.container'
 import TextTarget from './src/textTarget/textTarget.container'
 import LanguageSelector from './src/languageSelector/LanguageSelector.container'
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
     },
 })
-
+persistor.purge()
 const App: React.FunctionComponent<{}> = (): ReactElement => (
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -59,6 +60,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                         />
                     </View>
                     <TextTarget />
+                    <TextTargetTransliterated />
                     <Text>Work in progress!</Text>
                 </View>
             </SafeAreaView>
