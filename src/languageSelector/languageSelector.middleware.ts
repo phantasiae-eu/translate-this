@@ -16,6 +16,8 @@ import axios from 'axios'
 import {
     ATextTargetAccepted,
     textTargetAccepted,
+    textTargetTransliterate,
+    ATextTargetTransliterate,
 } from '../textTarget/textTarget.actions'
 import { ESelectors } from '../languages/languages.model'
 
@@ -61,13 +63,20 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                 )
                 await axios(options).then((res: AxiosResponse): [
                     ATextTargetAccepted,
-                    ALanguageChangeAccepted
+                    ALanguageChangeAccepted,
+                    ATextTargetTransliterate
                 ] => [
                     store.dispatch(
                         textTargetAccepted(res.data[0].translations[0].text)
                     ),
                     store.dispatch(
                         languageChangeAccepted(action.language, action.selector)
+                    ),
+                    store.dispatch(
+                        textTargetTransliterate(
+                            res.data[0].translations[0].text,
+                            res.data[0].translations[0].to
+                        )
                     ),
                 ])
             } catch (e) {
