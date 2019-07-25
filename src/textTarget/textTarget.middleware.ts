@@ -107,12 +107,19 @@ export const textTargetMiddleware: Middleware<{}, AppState> = (
                 )
                 await axios(options).then((res: AxiosResponse): [
                     ATextTargetAccepted,
-                    ALanguageSwitchAccepted
+                    ALanguageSwitchAccepted,
+                    ATextTargetTransliterate
                 ] => [
                     store.dispatch(
                         textTargetAccepted(res.data[0].translations[0].text)
                     ),
                     store.dispatch(languageSwitchAccepted(text)),
+                    store.dispatch(
+                        textTargetTransliterate(
+                            res.data[0].translations[0].text,
+                            res.data[0].translations[0].to
+                        )
+                    ),
                 ])
             } catch (e) {
                 store.dispatch(languageSwitchRejected(e))
