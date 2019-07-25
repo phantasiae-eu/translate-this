@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
     },
 })
-persistor.purge()
+
 const App: React.FunctionComponent<{}> = (): ReactElement => (
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
