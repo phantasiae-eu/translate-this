@@ -18,7 +18,6 @@ import {
 import {
     ALanguageSwitch,
     LANGUAGE_SWITCH,
-    languageSwitchRejected,
 } from '../languageSwitch/languageSwitch.actions'
 
 export const textSourceTransliteratedMiddleware: Middleware<{}, AppState> = (
@@ -122,7 +121,7 @@ export const textSourceTransliteratedMiddleware: Middleware<{}, AppState> = (
                     )
                 }
             } catch (e) {
-                store.dispatch(languageSwitchRejected(e))
+                store.dispatch(textSourceTransliteratedRejected(e))
             }
         }
         default:

@@ -20,6 +20,10 @@ import {
     ATextTargetTransliterate,
 } from '../textTarget/textTarget.actions'
 import { ESelectors } from '../languages/languages.model'
+import {
+    ATextSourceTransliterate,
+    textSourceTransliterate,
+} from '../textSource/textSource.actions'
 
 export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     store
@@ -34,6 +38,7 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     switch (action.type) {
         case LANGUAGES_CHANGE: {
             try {
+                console.log(action.language)
                 const from: string =
                     action.selector === ESelectors.SOURCE
                         ? action.language
@@ -64,7 +69,8 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                 await axios(options).then((res: AxiosResponse): [
                     ATextTargetAccepted,
                     ALanguageChangeAccepted,
-                    ATextTargetTransliterate
+                    ATextTargetTransliterate,
+                    ATextSourceTransliterate
                 ] => [
                     store.dispatch(
                         textTargetAccepted(res.data[0].translations[0].text)
@@ -76,6 +82,12 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                         textTargetTransliterate(
                             res.data[0].translations[0].text,
                             res.data[0].translations[0].to
+                        )
+                    ),
+                    store.dispatch(
+                        textSourceTransliterate(
+                            store.getState().textSource.text,
+                            action.language
                         )
                     ),
                 ])
