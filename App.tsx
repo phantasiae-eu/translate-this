@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
 import Header from './src/header/Header.component'
+import TextSourceTransliterated from './src/textSourceTransliterated/textSourceTransliterated.container'
 import TextTargetTransliterated from './src/textTargetTransliterated/textTargetTransliterated.container'
 import TextSource from './src/textSource/textSource.container'
 import TextTarget from './src/textTarget/textTarget.container'
@@ -48,6 +49,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                     <Languages />
                     <Header />
                     <TextSource />
+                    <TextSourceTransliterated />
                     <View style={styles.selectors}>
                         <LanguageSelector
                             selector={ESelectors.SOURCE}
