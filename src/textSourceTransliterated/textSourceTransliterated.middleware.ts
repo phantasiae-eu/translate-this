@@ -1,7 +1,6 @@
 import { Middleware, Dispatch } from 'redux'
 import { AppState } from '../store/store.model'
 import {
-    CHANGE_TEXT_SOURCE,
     AChangeTextSource,
     textSourceTransliterate,
 } from '../textSource/textSource.actions'
