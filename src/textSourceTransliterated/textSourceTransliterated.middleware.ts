@@ -25,15 +25,6 @@ export const textSourceTransliteratedMiddleware: Middleware<{}, AppState> = (
 ): Promise<AChangeTextSource | ALanguageSwitch> => {
     const result = next(action)
     switch (action.type) {
-        case CHANGE_TEXT_SOURCE: {
-            const to: string = store
-                .getState()
-                .languages.source.filter(
-                    (language): boolean => language.selected
-                )[0].code
-            store.dispatch(textSourceTransliterate(action.text, to))
-            break
-        }
         case LANGUAGE_SWITCH: {
             const to: string = store
                 .getState()

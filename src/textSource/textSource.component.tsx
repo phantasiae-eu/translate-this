@@ -4,7 +4,10 @@ import {
     TextSourceStateProps,
     TextSourceDispatchProps,
 } from './textSource.model'
-import { AChangeTextSource } from './textSource.actions'
+import {
+    AChangeTextSource,
+    ATextSourceTransliterate,
+} from './textSource.actions'
 
 const styles = StyleSheet.create({
     textInput: {
@@ -20,8 +23,10 @@ const textSource: React.FC<TextSourceStateProps & TextSourceDispatchProps> = (
 ): ReactElement => (
     <TextInput
         style={styles.textInput}
-        onChangeText={(text: string): AChangeTextSource =>
-            props.changeText(text)
+        onChangeText={(
+            text: string
+        ): [AChangeTextSource, ATextSourceTransliterate] =>
+            props.changeText(text, '')
         }
         value={props.text}
     />

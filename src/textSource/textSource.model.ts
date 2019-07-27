@@ -1,11 +1,19 @@
 import { Dispatch } from 'redux'
-import { AChangeTextSource } from './textSource.actions'
+import {
+    AChangeTextSource,
+    ATextSourceTransliterate,
+} from './textSource.actions'
+import { Language } from '../languages/languages.model'
 
 export interface TextSourceStateProps {
     text: string
+    sourceLanguage: Language[]
 }
 export interface TextSourceDispatchProps {
-    changeText: (text: string) => AChangeTextSource
+    changeText: (
+        text: string,
+        to: string
+    ) => [AChangeTextSource, ATextSourceTransliterate]
     dispatch: Dispatch
 }
 
