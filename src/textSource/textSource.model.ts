@@ -10,11 +10,15 @@ export interface TextSourceStateProps {
     sourceLanguage: Language[]
 }
 export interface TextSourceDispatchProps {
+    changeText: (text: string) => AChangeTextSource
+    dispatch: Dispatch
+}
+
+export interface TextSourceMergeProps {
     changeText: (
         text: string,
         to: string
     ) => [AChangeTextSource, ATextSourceTransliterate]
-    dispatch: Dispatch
 }
 
 export interface TextSource {

@@ -4,6 +4,7 @@ import { AppState } from '../store/store.model'
 import {
     TextSourceStateProps,
     TextSourceDispatchProps,
+    TextSourceMergeProps,
 } from './textSource.model'
 import { Dispatch } from 'redux'
 import {
@@ -19,29 +20,30 @@ const mapStateToProps = (state: AppState): TextSourceStateProps => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): TextSourceDispatchProps => ({
-    changeText: (
-        text: string,
-        to: string
-    ): [AChangeTextSource, ATextSourceTransliterate] => [
+    changeText: (text: string): AChangeTextSource =>
         dispatch(changeTextSource(text)),
-        dispatch(textSourceTransliterate(text, to)),
-    ],
     dispatch,
 })
 
 const mergeProps = (
     stateProps: TextSourceStateProps,
     dispatchProps: TextSourceDispatchProps
-): TextSourceStateProps & TextSourceDispatchProps => ({
+): TextSourceStateProps & TextSourceDispatchProps | TextSourceMergeProps => ({
     ...stateProps,
     ...dispatchProps,
-    changeText: (text: string): [AChangeTextSource, ATextSourceTransliterate] =>
-        dispatchProps.changeText(
-            text,
-            stateProps.sourceLanguage.filter(
-                (language): boolean => language.selected
-            )[0].code
+    changeText: (
+        text: string
+    ): [AChangeTextSource, ATextSourceTransliterate] => [
+        dispatchProps.changeText(text),
+        dispatchProps.dispatch(
+            textSourceTransliterate(
+                text,
+                stateProps.sourceLanguage.filter(
+                    (language): boolean => language.selected
+                )[0].code
+            )
         ),
+    ],
 })
 
 export default connect(
