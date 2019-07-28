@@ -38,7 +38,6 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
     switch (action.type) {
         case LANGUAGES_CHANGE: {
             try {
-                console.log(action.language)
                 const from: string =
                     action.selector === ESelectors.SOURCE
                         ? action.language
