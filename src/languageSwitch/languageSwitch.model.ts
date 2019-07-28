@@ -14,7 +14,8 @@ export interface LanguageSwitchDispatchProps {
     dispatch: Dispatch
 }
 
-export interface LanguageSwitchMergeProps extends LanguageSwitchStateProps {
+export interface LanguageSwitchMergeProps
+    extends LanguageSwitchStateProps,
+        Omit<LanguageSwitchDispatchProps, 'switchLanguage'> {
     switchLanguage: () => [ALanguageSwitch, ATextSourceTransliterate]
-    dispatch: Dispatch
 }
