@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
-import { LanguageSwitchDispatchProps } from './languageSwitch.model.props'
+import { LanguageSwitchDispatchProps } from './languageSwitch.model'
 import { Ionicons } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({

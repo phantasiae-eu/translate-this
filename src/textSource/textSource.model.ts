@@ -14,11 +14,12 @@ export interface TextSourceDispatchProps {
     dispatch: Dispatch
 }
 
-export interface TextSourceMergeProps {
+export interface TextSourceMergeProps extends TextSourceStateProps {
     changeText: (
         text: string,
         to: string
     ) => [AChangeTextSource, ATextSourceTransliterate]
+    dispatch: Dispatch
 }
 
 export interface TextSource {

@@ -7,7 +7,6 @@ import { languagesMiddleware } from '../languages/languages.middleware'
 import { textTargetMiddleware } from '../textTarget/textTarget.middleware'
 import { languageSelectorMiddleware } from '../languageSelector/languageSelector.middleware'
 import { transliterationMiddleware } from '../transliteration/transliteration.middleware'
-import { textSourceTransliteratedMiddleware } from '../textSourceTransliterated/textSourceTransliterated.middleware'
 
 const persistConfig = {
     key: 'root',
@@ -24,8 +23,7 @@ const store = createStore(
             languagesMiddleware,
             textTargetMiddleware,
             languageSelectorMiddleware,
-            transliterationMiddleware,
-            textSourceTransliteratedMiddleware
+            transliterationMiddleware
         )
     )
 )
