@@ -1,7 +1,7 @@
 import { Languages, Language, ESelectors } from '../languages/languages.model'
 import { LanguageSelector } from '../languages/languages.model'
 
-const list = (
+export const list = (
     stored: LanguageSelector,
     retrieved: Languages,
     selector: ESelectors
