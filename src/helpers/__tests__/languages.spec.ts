@@ -8,41 +8,7 @@ import {
 
 describe('languages', (): void => {
     describe('list', (): void => {
-        const setup = (): { result: Language[] } => {
-            const stored: LanguageSelector = {
-                source: [
-                    {
-                        code: 'ar',
-                        dir: 'rtl',
-                        name: 'Arabic',
-                        nativeName: 'العربية',
-                        selected: true,
-                    },
-                    {
-                        code: 'af',
-                        dir: 'ltr',
-                        name: 'Afrikaans',
-                        nativeName: 'Afrikaans',
-                        selected: false,
-                    },
-                ],
-                target: [
-                    {
-                        code: 'ar',
-                        dir: 'rtl',
-                        name: 'Arabic',
-                        nativeName: 'العربية',
-                        selected: false,
-                    },
-                    {
-                        code: 'af',
-                        dir: 'ltr',
-                        name: 'Afrikaans',
-                        nativeName: 'Afrikaans',
-                        selected: true,
-                    },
-                ],
-            }
+        const setup = (stored: LanguageSelector): { result: Language[] } => {
             const retrieved: Languages = {
                 af: {
                     dir: 'ltr',
@@ -64,7 +30,57 @@ describe('languages', (): void => {
             const result: Language[] = list(stored, retrieved, selector)
             return { result }
         }
+        it('should correctly handle the no stored languages yet case', (): void => {
+            const stored: LanguageSelector = {
+                source: [],
+                target: [],
+            }
+            const espectedResult: Language[] = [
+                {
+                    code: 'af',
+                    dir: 'ltr',
+                    name: 'Afrikaans',
+                    nativeName: 'Afrikaans',
+                    selected: true,
+                },
+                {
+                    code: 'ar',
+                    dir: 'rtl',
+                    name: 'Arabic',
+                    nativeName: 'العربية',
+                    selected: false,
+                },
+                {
+                    code: 'bg',
+                    dir: 'ltr',
+                    name: 'Bulgarian',
+                    nativeName: 'Български',
+                    selected: false,
+                },
+            ]
+            const { result } = setup(stored)
+            expect(result).toEqual(espectedResult)
+        })
         it('should include a new language from the API in a list of already stored languages', (): void => {
+            const stored: LanguageSelector = {
+                source: [
+                    {
+                        code: 'ar',
+                        dir: 'rtl',
+                        name: 'Arabic',
+                        nativeName: 'العربية',
+                        selected: true,
+                    },
+                    {
+                        code: 'af',
+                        dir: 'ltr',
+                        name: 'Afrikaans',
+                        nativeName: 'Afrikaans',
+                        selected: false,
+                    },
+                ],
+                target: [],
+            }
             const espectedResult: Language[] = [
                 {
                     code: 'af',
@@ -88,7 +104,7 @@ describe('languages', (): void => {
                     selected: false,
                 },
             ]
-            const { result } = setup()
+            const { result } = setup(stored)
             expect(result).toEqual(espectedResult)
         })
     })
