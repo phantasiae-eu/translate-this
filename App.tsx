@@ -48,8 +48,12 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                 <View style={styles.container}>
                     <Languages />
                     <Header />
+                    <Text>Source</Text>
                     <TextSource />
                     <TextSourceTransliterated />
+                    <Text>Target</Text>
+                    <TextTarget />
+                    <TextTargetTransliterated />
                     <View style={styles.selectors}>
                         <LanguageSelector
                             selector={ESelectors.SOURCE}
@@ -61,8 +65,6 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                             style={styles.selector}
                         />
                     </View>
-                    <TextTarget />
-                    <TextTargetTransliterated />
                     <Text>Work in progress!</Text>
                 </View>
             </SafeAreaView>
