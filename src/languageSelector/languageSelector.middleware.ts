@@ -69,7 +69,7 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                     ATextTargetAccepted,
                     ALanguageChangeAccepted,
                     ATextTargetTransliterate,
-                    ATextSourceTransliterate
+                    ATextSourceTransliterate | undefined
                 ] => [
                     store.dispatch(
                         textTargetAccepted(res.data[0].translations[0].text)
@@ -83,12 +83,14 @@ export const languageSelectorMiddleware: Middleware<{}, AppState> = (
                             res.data[0].translations[0].to
                         )
                     ),
-                    store.dispatch(
-                        textSourceTransliterate(
-                            store.getState().textSource.text,
-                            action.language
-                        )
-                    ),
+                    action.selector === ESelectors.TARGET
+                        ? undefined
+                        : store.dispatch(
+                              textSourceTransliterate(
+                                  store.getState().textSource.text,
+                                  action.language
+                              )
+                          ),
                 ])
             } catch (e) {
                 store.dispatch(languageChangeRejected(e))
