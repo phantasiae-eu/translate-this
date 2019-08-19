@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
 import Constants from 'expo-constants'
 import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native'
-import Header from './src/header/Header.component'
 import TextSourceTransliterated from './src/textSourceTransliterated/textSourceTransliterated.container'
 import TextTargetTransliterated from './src/textTargetTransliterated/textTargetTransliterated.container'
 import TextSource from './src/textSource/textSource.container'
@@ -47,7 +46,6 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.container}>
                     <Languages />
-                    <Header />
                     <Text>Source</Text>
                     <TextSource />
                     <TextSourceTransliterated />
@@ -65,7 +63,6 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                             style={styles.selector}
                         />
                     </View>
-                    <Text>Work in progress!</Text>
                 </View>
             </SafeAreaView>
         </PersistGate>
