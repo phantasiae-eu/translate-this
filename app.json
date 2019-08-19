@@ -25,10 +25,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "eu.phantasiae.translatethis"
+      "bundleIdentifier": "eu.phantasiae.translatethis",
+      "icon": "./assets/translate-this-ios.png"
     },
     "android": {
-      "package": "eu.phantasiae.translatethis"
+      "package": "eu.phantasiae.translatethis",
+      "icon": "./assets/translate-this-android.png"
     }
   }
 }
