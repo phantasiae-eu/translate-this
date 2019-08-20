@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Translate-This",
-    "slug": "translate-this",
+    "name": "Trathi",
+    "slug": "trathi",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -26,11 +26,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "eu.phantasiae.translatethis",
-      "icon": "./assets/translate-this-ios.png"
+      "icon": "./assets/trathi-ios.png"
     },
     "android": {
       "package": "eu.phantasiae.translatethis",
-      "icon": "./assets/translate-this-android.png"
+      "icon": "./assets/trathi-android.png"
     }
   }
 }
