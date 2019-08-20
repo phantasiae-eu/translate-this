@@ -29,6 +29,11 @@
       "icon": "./assets/trathi-ios.png"
     },
     "android": {
+      "splash": {
+        "image": "./assets/trathi-splash.png",
+        "resizeMode": "native",
+        "backgroundColor": "#7B87D5"
+      },
       "package": "eu.phantasiae.translatethis",
       "icon": "./assets/trathi-android.png"
     }
