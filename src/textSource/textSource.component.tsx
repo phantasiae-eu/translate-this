@@ -1,25 +1,16 @@
 import React, { ReactElement } from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import { TextInput } from 'react-native'
 import {
     TextSourceStateProps,
     TextSourceDispatchProps,
 } from './textSource.model'
 import { AChangeTextSource } from './textSource.actions'
 
-const styles = StyleSheet.create({
-    textInput: {
-        height: 40,
-        width: '100%',
-        borderWidth: 1,
-        borderColor: 'grey',
-    },
-})
-
 const textSource: React.FC<TextSourceStateProps & TextSourceDispatchProps> = (
     props: TextSourceStateProps & TextSourceDispatchProps
 ): ReactElement => (
     <TextInput
-        style={styles.textInput}
+        style={props.style}
         onChangeText={(text: string): AChangeTextSource =>
             props.changeText(text)
         }

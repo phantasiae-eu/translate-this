@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         padding: 10,
     },
     selectors: {
@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'grey',
     },
+    textField: {
+        height: 40,
+        width: '100%',
+        borderWidth: 1,
+        borderColor: 'grey',
+    },
 })
 
 const App: React.FunctionComponent<{}> = (): ReactElement => (
@@ -47,7 +53,7 @@ const App: React.FunctionComponent<{}> = (): ReactElement => (
                 <View style={styles.container}>
                     <Languages />
                     <Text>Source</Text>
-                    <TextSource />
+                    <TextSource style={styles.textField} />
                     <TextSourceTransliterated />
                     <Text>Target</Text>
                     <TextTarget />

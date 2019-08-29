@@ -4,8 +4,9 @@ import {
     ATextSourceTransliterate,
 } from './textSource.actions'
 import { Language } from '../languages/languages.model'
+import { StyleProp } from 'react-native'
 
-export interface TextSourceStateProps {
+export interface TextSourceStateProps extends TextSourceOwnProps {
     text: string
     sourceLanguage: Language[]
 }
@@ -29,4 +30,15 @@ export interface TextSource {
 
 export const defaultTextSource: TextSource = {
     text: '',
+}
+
+interface TextSourceOwnPropsStyle {
+    height: number
+    width: string
+    borderWidth: number
+    borderColor: string
+}
+
+export interface TextSourceOwnProps {
+    style: StyleProp<TextSourceOwnPropsStyle>
 }

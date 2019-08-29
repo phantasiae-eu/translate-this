@@ -5,6 +5,7 @@ import {
     TextSourceStateProps,
     TextSourceDispatchProps,
     TextSourceMergeProps,
+    TextSourceOwnProps,
 } from './textSource.model'
 import { Dispatch } from 'redux'
 import {
@@ -14,9 +15,13 @@ import {
     textSourceTransliterate,
 } from './textSource.actions'
 
-const mapStateToProps = (state: AppState): TextSourceStateProps => ({
+const mapStateToProps = (
+    state: AppState,
+    ownProps: TextSourceOwnProps
+): TextSourceStateProps => ({
     text: state.textSource.text,
     sourceLanguage: state.languages.source,
+    style: ownProps.style,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): TextSourceDispatchProps => ({
